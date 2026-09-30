@@ -2,13 +2,21 @@
 
 The `ballerinax/xero.appstore` connector provides practical examples illustrating usage in various scenarios.
 
-[//]: # (TODO: Add examples)
-1. 
-2. 
+| Example | Description |
+|---------|-------------|
+| [`metered_usage_reporting`](./metered_usage_reporting/metered_usage_reporting.md) | Find a subscription's metered item, submit a usage record for it and optionally correct the quantity. |
+| [`subscription_usage_audit`](./subscription_usage_audit/subscription_usage_audit.md) | Retrieve a subscription and total the quantity of its usage records per subscription item. |
 
 ## Prerequisites
 
-[//]: # (TODO: Add prerequisites)
+1. Follow the [setup guide](https://github.com/ballerina-platform/module-ballerinax-xero.appstore/tree/main/README.md#setup-guide) to obtain your Xero client credentials.
+
+2. For each example, create a `Config.toml` file in the example directory with the values that example's document lists. Both need your client credentials:
+
+    ```toml
+    clientId = "<Your Xero client ID>"
+    clientSecret = "<Your Xero client secret>"
+    ```
 
 ## Running an example
 
