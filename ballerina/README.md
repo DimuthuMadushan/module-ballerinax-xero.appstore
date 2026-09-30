@@ -1,8 +1,10 @@
 ## Overview
 
-[Xero](https://www.xero.com/) is a cloud accounting platform, and the [Xero App Store](https://marketplace.xero.com/) is where partners publish apps to Xero customers. The App Store Billing API lets partners read the subscriptions customers hold for their apps and report metered usage so that Xero can bill for it.
+[Xero](https://www.xero.com/) is a cloud accounting platform, and the [Xero App Store](https://marketplace.xero.com/) is where partners publish apps to Xero customers. The App Store Billing API lets partners read the subscriptions customers hold for their apps through Xero App Store Subscriptions (XASS) and report metered usage against them.
 
-The Xero App Store connector lets Ballerina applications call the App Store API from their own billing and usage pipelines. It supports version `19.0.0` of the API.
+> **Note:** XASS is retired. Xero stopped accepting new apps into XASS on 4 December 2025 and required partners to move their subscribers to their own billing by 30 June 2026. The API is legacy and is not an option for new integrations.
+
+Use the Xero App Store connector only if your app already billed customers through XASS, for example to read, reconcile or finish reporting usage for those subscriptions while you migrate them. New apps should bill customers through their own billing system. It supports version `19.0.0` of the API.
 
 ### Key features
 
@@ -14,23 +16,21 @@ The Xero App Store connector lets Ballerina applications call the App Store API 
 
 ## Setup guide
 
-To use the Xero App Store connector, you need a Xero developer account and an app that is enrolled in the Xero App Store. The connector authenticates with the OAuth 2.0 client credentials grant, which Xero issues to App Store partners.
+To use the Xero App Store connector, you need the credentials of an existing Xero app that was set up for XASS billing. Apps can no longer enroll in XASS, and a new app has no XASS subscriptions to read. Whether the endpoints still respond for a migrated app is up to Xero, so confirm with Xero developer support before you rely on them. The connector authenticates with the OAuth 2.0 client credentials grant.
 
-### Step 1: Create a Xero developer account
+### Step 1: Open your app in the Xero developer portal
 
-1. Sign up for a free account on the [Xero developer portal](https://developer.xero.com/).
+1. Sign in to the [Xero developer portal](https://developer.xero.com/) with the account that owns your XASS app.
 
-2. Open **My Apps** and select **New app**.
+2. Open **My Apps** and select the app.
 
 ### Step 2: Get the client credentials
 
-1. Create the app and complete its configuration. Partners who bill through the App Store must have their app listed in the Xero App Store so that it has subscriptions to read.
+1. On the app's **Configuration** page, copy the **Client id**.
 
-2. On the app's **Configuration** page, copy the **Client id**.
+2. Select **Generate a secret**, then copy the **Client secret**. Xero shows it only once.
 
-3. Select **Generate a secret**, then copy the **Client secret**. Xero shows it only once.
-
-4. The connector requests the `marketplace.billing` scope from `https://identity.xero.com/connect/token`, which is its default token URL.
+3. The connector requests the `marketplace.billing` scope from `https://identity.xero.com/connect/token`, which is its default token URL.
 
 ### Step 3: Find the subscription details
 
